@@ -408,6 +408,144 @@ html, body {
   color: var(--terracotta-dark);
 }
 
+/* ---------- Ryan's band ---------- */
+.ryan-band {
+  position: relative;
+  max-width: 1120px;
+  margin: 20px auto 0;
+  padding: 30px 32px 26px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, #f3f7ff 0%, #dce8f7 45%, #c8daf0 100%);
+  border: 1px solid rgba(58, 110, 175, 0.35);
+  border-radius: 22px;
+  box-shadow: 0 18px 44px rgba(40, 80, 140, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.25s;
+}
+.ryan-band::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, #3a6eaf, #1e3f6e);
+}
+.ryan-band::after {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(58, 110, 175, 0.22), transparent 70%);
+  pointer-events: none;
+}
+.ryan-band:hover {
+  box-shadow: 0 26px 60px rgba(40, 80, 140, 0.22);
+}
+
+.ryan-toggle {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.ryan-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  font-weight: 800;
+  font-size: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, #3a6eaf, #1e3f6e);
+  padding: 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(40, 80, 140, 0.32);
+}
+.ryan-label::before { content: '★'; font-size: 13px; color: #7eb8f7; }
+.ryan-toggle-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #1e3f6e;
+}
+.ryan-toggle-hint {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.ryan-chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; height: 30px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(58, 110, 175, 0.45);
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(40, 80, 140, 0.14);
+  transition: transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.ryan-band--open .ryan-chevron { transform: rotate(180deg); }
+
+.ryan-essay {
+  position: relative;
+  z-index: 1;
+  animation: ryanReveal 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+@keyframes ryanReveal {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ryan-essay-title {
+  font-family: var(--serif);
+  font-size: 36px;
+  line-height: 1.1;
+  margin: 4px 0 6px;
+  color: #1e3f6e;
+}
+.ryan-essay-sub {
+  margin: 0 0 22px;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--muted);
+}
+.ryan-para {
+  max-width: 760px;
+  margin: 0 0 18px;
+  font-size: 16.5px;
+  line-height: 1.72;
+  color: var(--ink);
+}
+.ryan-para--lead::first-letter {
+  font-family: var(--serif);
+  font-size: 58px;
+  line-height: 0.8;
+  font-weight: 700;
+  float: left;
+  margin: 6px 12px 0 0;
+  color: #3a6eaf;
+}
+.ryan-signoff {
+  margin: 8px 0 0;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-style: italic;
+  color: #1e3f6e;
+}
+
 /* ---------- Grid ---------- */
 .grid-wrap { max-width: 1120px; margin: 0 auto; padding: 48px 24px 90px; }
 .section-heading {
@@ -501,6 +639,7 @@ html, body {
   .page--shifted .last-result,
   .page--shifted .history,
   .page--shifted .clive-band,
+  .page--shifted .ryan-band,
   .page--shifted .grid-wrap {
     margin-right: clamp(360px, 46vw, 660px);
   }

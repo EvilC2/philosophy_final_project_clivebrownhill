@@ -15,6 +15,18 @@ const cliveEssay = [
   'After that reflection, what I’m now sitting with is the realization that to stay disciplined and truly follow what I am saying is inconceivably difficult, and every day I fail to live flawlessly. I want to excel socially, physically, emotionally, mentally, financially - but it’s so hard because of the constant temptations and distractions of life. To truly live perfectly is something I doubt I’ll ever be able to accomplish, but I’ll always be working to get there. And if in the moment I fail, I know my conscience will never stop screaming at me to do better.'
 ]
 
+// RYAN'S REFLECTION — personal essay shown in the expandable band.
+const ryanEssay = [
+  'My result was Stoicism, Marcus Aurelius, and it made more sense than I expected. The tagline is "the good life is a disciplined one," which sounds kind of rigid to some, but to me it\'s quite honest. The whole idea is that a good life doesn\'t come from what happens to you, it comes from how you respond. You don\'t control outcomes, you only control your own mind and decisions. Everything else is outside your reach.',
+  'The quiz listed my strengths as staying calm when everything around you isn\'t, following through on what you decide to do, and separating what\'s yours to control from what isn\'t. I didn\'t think of those as strengths before seeing them written out, but yeah, that\'s probably accurate.',
+  'There\'s a question about what goes through your head at 2am when you can\'t sleep. One of the answers is "most of what I\'m spiraling about isn\'t even in my control." I picked that one without thinking too deeply, but it\'s probably the most honest answer I gave. Because that\'s a real thing I deal with. I regularly find myself going over some situation in my head and at a certain point I catch myself and realize none of it is in my hands. The only thing left is deciding how I\'m going to show up. That moment of redirecting is basically the whole Stoic practice.',
+  'I train a lot, and the Stoic thing makes the most sense to me through that lens. When you\'re in the middle of something hard and your brain is telling you to stop, there\'s a moment where you decide what kind of person you are. Discipline is just that decision made enough times that it stops feeling like a decision. You\'ve built something in yourself that doesn\'t cave as easily.',
+  'Marcus Aurelius ran the Roman empire through wars and plagues and spent his nights writing to himself about how to stay a decent person, not to publish, just to hold himself accountable. His journal, The Meditations, is a guy at the highest level of external pressure refusing to let that pressure become who he is. That\'s what stoicism means to me.',
+  'My second result was Existentialist Ethics, which is Simone de Beauvoir. The quiz said I keep asking "is this actually mine?" and honestly that\'s true. The main idea is that your life doesn\'t come with meaning already built in. You make yourself who you are through your choices. To me that connects with Stoicism because they\'re both about taking ownership. One says own your reactions, the other says own your choices.',
+  'One thing the quiz warned me about was mixing up holding a feeling in with actually being in control of it. That stuck with me. Sometimes staying calm is real self-control and sometimes I\'m just dodging the feeling. Stoicism isn\'t supposed to mean you don\'t feel anything. You still feel it, you just don\'t let it take over. I\'m not always sure I do that part right.',
+  'Honestly what I want out of life is to handle things well even when stuff isn\'t going my way. Like, still be myself when I\'m under pressure. Stoicism doesn\'t say life will be easy or comfortable, it just says if you\'re solid on the inside, the bad stuff doesn\'t get to change who you are. That makes more sense to me than most other ideas about what a good life is.',
+]
+
 function formatDate(iso) {
   try {
     return new Date(iso).toLocaleDateString(undefined, {
@@ -34,6 +46,7 @@ export default function Home() {
   const [showHistory, setShowHistory] = useState(false)
   const [viewing, setViewing] = useState(null) // { ranked, dateLabel } for full history result
   const [cliveOpen, setCliveOpen] = useState(true) // Clive's reflection band expanded state
+  const [ryanOpen, setRyanOpen] = useState(false) // Ryan's reflection band expanded state
 
   // Build a ranked id array from a stored history entry (back-compat safe).
   function rankedFrom(entry) {
@@ -173,6 +186,40 @@ export default function Home() {
               </p>
             ))}
             <p className="clive-signoff">— Clive</p>
+          </div>
+        )}
+      </section>
+
+      {/* RYAN'S REFLECTION — expandable essay band, steel-blue accent */}
+      <section className={`ryan-band ${ryanOpen ? 'ryan-band--open' : ''}`}>
+        <button
+          className="ryan-toggle"
+          onClick={() => setRyanOpen((o) => !o)}
+          aria-expanded={ryanOpen}
+        >
+          <span className="ryan-label">Ryan's Reflection</span>
+          <span className="ryan-toggle-meta">
+            <span className="ryan-toggle-hint">
+              {ryanOpen ? 'Hide' : 'Read'} my good life
+            </span>
+            <span className="ryan-chevron" aria-hidden="true">
+              ▾
+            </span>
+          </span>
+        </button>
+
+        {ryanOpen && (
+          <div className="ryan-essay">
+            <h2 className="ryan-essay-title">My Good Life</h2>
+            <p className="ryan-essay-sub">
+              Stoicism. The good life is a disciplined one.
+            </p>
+            {ryanEssay.map((para, i) => (
+              <p key={i} className={i === 0 ? 'ryan-para ryan-para--lead' : 'ryan-para'}>
+                {para}
+              </p>
+            ))}
+            <p className="ryan-signoff">— Ryan</p>
           </div>
         )}
       </section>
